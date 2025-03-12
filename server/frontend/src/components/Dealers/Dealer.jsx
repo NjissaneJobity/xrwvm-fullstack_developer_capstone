@@ -11,24 +11,24 @@ import Header from '../Header/Header';
 const Dealer = () => {
 
 
-  const [dealer, setDealer] = useState({});
-  const [reviews, setReviews] = useState([]);
-  const [unreviewed, setUnreviewed] = useState(false);
-  const [postReview, setPostReview] = useState(<></>)
+const [dealer, setDealer] = useState({});
+const [reviews, setReviews] = useState([]);
+const [unreviewed, setUnreviewed] = useState(false);
+const [postReview, setPostReview] = useState(<></>)
 
-  let curr_url = window.location.href;
-  let root_url = curr_url.substring(0,curr_url.indexOf("dealer"));
-  let params = useParams();
-  let id =params.id;
-  let dealer_url = root_url+`djangoapp/dealer/${id}`;
-  let reviews_url = root_url+`djangoapp/reviews/dealer/${id}`;
-  let post_review = root_url+`postreview/${id}`;
+let curr_url = window.location.href;
+let root_url = curr_url.substring(0,curr_url.indexOf("dealer"));
+let params = useParams();
+let id =params.id;
+let dealer_url = root_url+`djangoapp/dealer/${id}`;
+let reviews_url = root_url+`djangoapp/reviews/dealer/${id}`;
+let post_review = root_url+`postreview/${id}`;
   
-  const get_dealer = async ()=>{
+const get_dealer = async ()=>{
     const res = await fetch(dealer_url, {
       method: "GET"
     });
-    const retobj = await res.json();
+const retobj = await res.json();
     
     if(retobj.status === 200) {
       let dealerobjs = Array.from(retobj.dealer)
@@ -36,11 +36,11 @@ const Dealer = () => {
     }
   }
 
-  const get_reviews = async ()=>{
+const get_reviews = async ()=>{
     const res = await fetch(reviews_url, {
       method: "GET"
     });
-    const retobj = await res.json();
+const retobj = await res.json();
     
     if(retobj.status === 200) {
       if(retobj.reviews.length > 0){
@@ -51,12 +51,12 @@ const Dealer = () => {
     }
   }
 
-  const senti_icon = (sentiment)=>{
+const senti_icon = (sentiment)=>{
     let icon = sentiment === "positive"?positive_icon:sentiment==="negative"?negative_icon:neutral_icon;
     return icon;
   }
 
-  useEffect(() => {
+useEffect(() => {
     get_dealer();
     get_reviews();
     if(sessionStorage.getItem("username")) {
@@ -90,4 +90,4 @@ return(
 )
 }
 
-export default Dealer
+export default Dealer;

@@ -26,9 +26,9 @@ const Dealers = () => {
     }
   }
 
-  const get_dealers = async ()=>{
-    const res = await fetch(dealer_url, {
-      method: "GET"
+const get_dealers = async ()=>{
+const res = await fetch(dealer_url, {
+    method: "GET"
     });
     const retobj = await res.json();
     if(retobj.status === 200) {
@@ -42,7 +42,8 @@ const Dealers = () => {
       setDealersList(all_dealers)
     }
   }
-  useEffect(() => {
+    
+useEffect(() => {
     get_dealers();
   },[]);  
 
@@ -93,4 +94,4 @@ return(
 )
 }
 
-export default Dealers
+export default Dealers;
