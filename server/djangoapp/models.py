@@ -60,4 +60,4 @@ class CarModel(models.Model):
     )
 
     def __str__(self):
-        return f"{self.car_make.name} {self.name} ({self.year})"  # e.g., "Toyota Camry (2020)"
+        return f"{self.car_make.name} {self.name} ({self.year})"
