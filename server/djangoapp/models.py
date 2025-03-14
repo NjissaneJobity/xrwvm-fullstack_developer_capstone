@@ -9,8 +9,8 @@ class CarMake(models.Model):
     # Optional additional field
     country = models.CharField(max_length=100, blank=True, null=True, help_text="Country of origin")
  
-     def __str__(self):
-         return self.name  # Returns the name of the car make (e.g., "Toyota")
+    def __str__(self):
+        return self.name  # Returns the name of the car make (e.g., "Toyota")
 
 
 class CarModel(models.Model):
