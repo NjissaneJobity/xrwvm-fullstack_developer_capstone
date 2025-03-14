@@ -8,13 +8,16 @@ load_dotenv()
 
 # Define backend and sentiment analyzer URLs
 backend_url = os.getenv('backend_url', default="http://localhost:3030")
-sentiment_analyzer_url = os.getenv('sentiment_analyzer_url', default="http://localhost:5050/")
+sentiment_analyzer_url = os.getenv(
+    'sentiment_analyzer_url', 
+    default="http://localhost:5050/"
+)
 
 
 def get_request(endpoint, **kwargs):
     # Construct query parameters from kwargs
     if kwargs:
-        params = urlencode(kwargs)  
+        params = urlencode(kwargs)  # Safer and cleaner than manually concatenating
         request_url = f"{backend_url}{endpoint}?{params}"
     else:
         request_url = f"{backend_url}{endpoint}"
@@ -24,7 +27,7 @@ def get_request(endpoint, **kwargs):
     try:
         # Perform the GET request
         response = requests.get(request_url)
-        response.raise_for_status() 
+        response.raise_for_status()  # Ensure a 200 status code, raises for 4xx/5xx errors
         return response.json()
     except requests.exceptions.RequestException as err:
         print(f"Network exception occurred: {err}")
@@ -51,7 +54,7 @@ def post_review(data_dict):
     try:
         # Perform the POST request with the provided data
         response = requests.post(request_url, json=data_dict)
-        response.raise_for_status() 
+        response.raise_for_status()  # Check for 4xx/5xx errors
         print(response.json())
         return response.json()
     except requests.exceptions.RequestException as err:
